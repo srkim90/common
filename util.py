@@ -20,7 +20,7 @@ import timeit
 import datetime 
 
 def echo_print(dummy_str):
-    print("%s" % dummy_str)
+    print("[%s]" % dummy_str)
 
 def get_old_time(n_day):
     now = datetime.datetime.now(tz=pytz.timezone("Asia/Seoul"))
