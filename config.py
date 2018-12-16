@@ -184,10 +184,11 @@ class cfg_data(singleton_instance):
 
         self.data_list = data_list   
 
-    def print_data_dictionary(self):
-        PRINT("%s" % (LINE80) )
-        PRINT("  Data configuration file : '%s' information" % (self.data_path) )
-        PRINT("%s" % (LINE80) )
+    def print_data_dictionary(self, is_title=True):
+        if is_title == True:
+            PRINT("%s" % (LINE80) )
+            PRINT("  Data configuration file : '%s' information" % (self.data_path) )
+            PRINT("%s" % (LINE80) )
         for item in self.data_list:
             category    = item[0]
             data_dict   = item[1]
@@ -196,7 +197,7 @@ class cfg_data(singleton_instance):
             PRINT("%s[%s%s%s]%s" % (C_RED, C_GREEN, category, C_RED, C_END), tab=1)
 
             for key in data_dict.keys():
-                PRINT("%-20s:%s" % (key, data_dict[key]), tab=2)
+                PRINT("%-20s: %s" % (key, data_dict[key]), tab=2)
         PRINT("%s" % (LINE80) )
 
     def search_data_cfg(self, field, category="root"):
