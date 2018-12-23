@@ -200,7 +200,7 @@ class cfg_data(singleton_instance):
                 PRINT("%-20s: %s" % (key, data_dict[key]), tab=2)
         PRINT("%s" % (LINE80) )
 
-    def search_data_cfg(self, field, category="root"):
+    def search_data_cfg(self, field, category="root", data_type=str):
         for item in self.data_list:
             in_category    = item[0]
             in_data_dict   = item[1]
@@ -211,7 +211,19 @@ class cfg_data(singleton_instance):
                 continue
 
             if field in in_data_dict:
-                return in_data_dict[field]
+                if data_type == str:
+                    return in_data_dict[field]
+                if data_type == int:
+                    return int(in_data_dict[field])
+                if data_type == bool:
+                    item = in_data_dict[field].lower()
+                    if item == "true":
+                        return True
+                    elif item == "false":
+                        return False
+                    else:
+                        PRINT("Exception: Invalid Value : %s in field='%s' in category='%s'" % (in_data_dict[field], field, category))
+                        raise Exception
         PRINT("Exception: Notfound fiel='%s' in category='%s'" % (field, category))
         raise Exception
         #return None

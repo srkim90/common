@@ -138,7 +138,7 @@ class mmc_parse(singleton_instance):
             char = self._getch()
             self._input_proc(char)
             if char == "":
-                sleep(0.05)
+                sleep(0.001)
             
     def show_mmc_tree(self):
         mmc_tree = self._get_mmc_child_list()
@@ -400,7 +400,7 @@ class mmc_parse(singleton_instance):
 
         oldflags = fcntl.fcntl(fd, fcntl.F_GETFL)
         fcntl.fcntl(fd, fcntl.F_SETFL, oldflags | os.O_NONBLOCK)
-        sleep_time = 0.015
+        sleep_time = 0.0025
         n_tot_sleep = 0
         try:        
             while 1:            
